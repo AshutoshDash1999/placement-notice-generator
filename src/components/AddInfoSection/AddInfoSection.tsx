@@ -1,35 +1,32 @@
 import React from "react";
-import { Container, Input } from "@mantine/core";
-import { useId } from '@mantine/hooks';
-import InputMask from 'react-input-mask';
+import {
+  Container,
+  Grid,
+  Input,
+  List,
+  MultiSelect,
+  Text,
+  Textarea,
+} from "@mantine/core";
+import NoticeID from "../InputFields/NoticeId/NoticeID";
+import CompanyName from "../InputFields/CompanyName/CompanyName";
+import AboutCompany from "../InputFields/AboutCompany/AboutCompany";
+import Eligibility from "../InputFields/Eligibility/Eligibility";
+import FormSubmission from "../InputFields/FormSubmission/FormSubmission";
+import AboutJob from "../InputFields/AboutJob/AboutJob";
 
 function AddInfoSection() {
-  const id = useId();
+
 
   return (
     <Container>
-      <Input.Wrapper id={id} label="Placement Notice ID" required>
-        <Input
-          component={InputMask}
-          mask="PA-9999"
-          id={id}
-          placeholder="PA-XXXX"
-        />
-      </Input.Wrapper>
-      <Input.Wrapper id={id} label="Company Name" required>
-        <Input
-          id={id}
-          placeholder="Amazon/Microsoft/TCS...."
-        />
-      </Input.Wrapper>
-      <Input.Wrapper id={id} label="About the Company" required>
-        <Input
-          component={InputMask}
-          mask="PA-9999"
-          id={id}
-          placeholder="PA-XXXX"
-        />
-      </Input.Wrapper>
+      
+      <NoticeID/>
+      <CompanyName/>
+      <AboutCompany/>
+      <AboutJob/>
+      <Eligibility/>
+      <FormSubmission/>
     </Container>
   );
 }
