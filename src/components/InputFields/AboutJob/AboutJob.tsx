@@ -1,14 +1,15 @@
-import { Button, TextInput } from '@mantine/core'
-import React from 'react'
+import { Button, TextInput } from '@mantine/core';
 
 function AboutJob() {
   return (
     <div>
-        <TextInput label="Job Role"  withAsterisk/>
-        <TextInput label="CTC"  withAsterisk/>
-        <Button variant="light">Add New Role</Button>
+      <TextInput mb='xs' label='Job Role' name='job_role' withAsterisk />
+      <TextInput mb='xs' label='CTC' name='ctc' withAsterisk />
+      <Button variant='light' my='xs'>
+        Add New Role
+      </Button>
     </div>
-  )
+  );
 }
 
-export default AboutJob
+export default AboutJob;

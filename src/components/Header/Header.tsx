@@ -1,13 +1,13 @@
-import { Title, Container, Divider  } from "@mantine/core";
-import React from "react";
+import { Title, Container, Divider } from '@mantine/core';
+import React from 'react';
 
 function Header() {
   return (
     <Container>
-      <Title order={3} size="h1" align="center">
+      <Title order={3} size='h1' my={'sm'} weight={500} align='center'>
         Placement Notice Generator
       </Title>
-      <Divider my="sm" />
+      <Divider my='sm' />
     </Container>
   );
 }
