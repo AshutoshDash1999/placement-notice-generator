@@ -1,4 +1,3 @@
-import React, { useContext } from 'react';
 import {
   Box,
   Button,
@@ -8,17 +7,10 @@ import {
   Title,
   Tooltip,
 } from '@mantine/core';
+import { useApp } from '../../context/AppContext';
 
 function NoticeViewSection() {
-  // mock value
-  const values = {
-    notice_id: 'PA-7845',
-    company_name: 'RazorPay',
-    about_company: 'lorem ipsum dolor semet',
-  };
-
-  // console.log(driveInfo);
-  
+  const { state: values } = useApp();
 
   return (
     <Container>
@@ -47,15 +39,19 @@ function NoticeViewSection() {
               <b>{values.notice_id}</b>
             </p>
             {/* company name */}
-            <p>
-              <b>Company: </b>
-              {values.company_name}
-            </p>
+            {values.company_name && (
+              <p>
+                <b>Company: </b>
+                {values.company_name}
+              </p>
+            )}
             {/* about company */}
-            <p>
-              <b>About Company: </b> <br />
-              {values.about_company}
-            </p>
+            {values.about_company && (
+              <p>
+                <b>About Company: </b> <br />
+                {values.about_company}
+              </p>
+            )}
           </Box>
         </Tabs.Panel>
 
@@ -80,7 +76,7 @@ function NoticeViewSection() {
       <Tooltip label='Copy formatted text'>
         {/* value is the formatted text */}
         {/* TODO: generate the formatted text from the values(coming from global state)*/}
-        <CopyButton value='https://mantine.dev'>
+        <CopyButton value='text_to_be_copied'>
           {({ copied, copy }) => (
             <Button color={copied ? 'teal' : 'blue'} onClick={copy}>
               {copied ? 'Copied text' : 'Copy'}
