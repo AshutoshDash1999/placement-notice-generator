@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Box,
   Button,
@@ -16,6 +16,9 @@ function NoticeViewSection() {
     company_name: 'RazorPay',
     about_company: 'lorem ipsum dolor semet',
   };
+
+  // console.log(driveInfo);
+  
 
   return (
     <Container>
