@@ -26,13 +26,12 @@ function Preview() {
       >
         {/* notice id */}
         <p>
-          <b>{values.notice_id}</b>
+          <b>#{values.notice_id}</b>
         </p>
         {/* company name */}
         {values.company_name && (
           <p>
-            <b>Company: </b>
-            {values.company_name}
+            <b>#{values.company_name}</b>
           </p>
         )}
         {/* about company */}
@@ -44,67 +43,81 @@ function Preview() {
         )}
         {values.job_role && (
           <p>
-            <b>Job Role: </b> <br />
+            <b>Job Role: </b>
             {values.job_role}
           </p>
         )}
         {values.ctc && (
           <p>
-            <b>CTC: </b> <br />
-            {values.ctc}
+            <b>CTC: </b>
+            {values.ctc} LPA
           </p>
         )}
+
+        {(values.degree_allowed ||
+          values.branches_allowed ||
+          values.max_backlog ||
+          values.tenth_perc ||
+          values.twelfth_perc ||
+          values.diploma_perc ||
+          values.ug_perc ||
+          values.pg_perc) && (
+          <p>
+            <b>Eligibility Criteria</b>
+          </p>
+        )}
+
         {values.degree_allowed.length > 0 && (
           <p>
-            <b>Degree: </b> <br />
+            - Degree:
             {values.degree_allowed.toString()}
           </p>
         )}
         {values.branches_allowed.length > 0 && (
           <p>
-            <b>Branch: </b> <br />
+            - Branch:
             {values.branches_allowed}
           </p>
         )}
 
         {values.max_backlog && (
           <p>
-            <b>Maximum Backlog: </b> <br />
+            - Maximum Backlog:
             {values.max_backlog}
           </p>
         )}
 
         {values.tenth_perc && (
           <p>
-            <b>Min 10th %: </b> <br />
+            - Min 10th %:
             {values.tenth_perc}%
           </p>
         )}
 
         {values.twelfth_perc && (
           <p>
-            <b>Min 12th %: </b> <br />
+            - Min 12th %:
             {values.twelfth_perc}%
           </p>
         )}
 
         {values.diploma_perc && (
           <p>
-            <b>Min diploma %: </b> <br />
+            - Min diploma %:
             {values.diploma_perc}%
           </p>
         )}
 
         {values.ug_perc && (
           <p>
-            <b>Min UG %: </b> <br />
+            - Min UG %:
             {values.ug_perc}%
           </p>
         )}
 
         {values.pg_perc && (
           <p>
-            <b>Min PG %: </b> <br />
+            - Min PG %:
             {values.pg_perc}%
           </p>
         )}
