@@ -1,4 +1,4 @@
-import { createContext, useReducer, useContext, type Dispatch } from 'react';
+import { createContext, useReducer, useContext, type Dispatch } from "react";
 
 type InitialStateType = {
   notice_id: string;
@@ -8,7 +8,7 @@ type InitialStateType = {
   ctc: string;
   // eligibility criteria
   degree_allowed: string[];
-  branchses_allowed: string[];
+  branches_allowed: string[];
   max_backlog: string;
   tenth_perc: string;
   twelfth_perc: string;
@@ -19,31 +19,31 @@ type InitialStateType = {
 
   // other details:
   form_link: string;
-  form_submission_date: string;
-  pick_time: string;
+  form_submission_date: any;
+  form_submission_time: any;
 };
 
 const initialState = {
-  notice_id: 'PA-123',
-  company_name: '',
-  about_company: '',
-  job_role: '',
-  ctc: '',
+  notice_id: "",
+  company_name: "",
+  about_company: "",
+  job_role: "",
+  ctc: "",
   // eligibility criteria
   degree_allowed: [],
-  branchses_allowed: [],
-  max_backlog: '',
-  tenth_perc: '',
-  twelfth_perc: '',
-  diploma_perc: '',
-  ug_perc: '',
-  pg_perc: '',
-  min_gap: '',
+  branches_allowed: [],
+  max_backlog: "",
+  tenth_perc: "",
+  twelfth_perc: "",
+  diploma_perc: "",
+  ug_perc: "",
+  pg_perc: "",
+  min_gap: "",
 
   // other details:
-  form_link: '',
-  form_submission_date: '',
-  pick_time: '',
+  form_link: "",
+  form_submission_date: new Date(),
+  form_submission_time: new Date(),
 };
 
 const AppContext = createContext<{
@@ -56,29 +56,65 @@ const AppContext = createContext<{
 
 export function changeInput(payload: any) {
   return {
-    type: 'CHANGE_INPUT',
+    type: "CHANGE_INPUT",
     payload,
   };
 }
 
 export function addDegree(payload: any) {
   return {
-    type: 'PUSH_DEGREE',
+    type: "PUSH_DEGREE",
     payload,
   };
 }
 
+export function addBranch(payload: any) {
+  return {
+    type: "PUSH_BRANCH",
+    payload,
+  };
+}
+
+export function addBacklogs(payload: any) {
+  return {
+    type: "PUSH_BACKLOGS",
+    payload,
+  };
+}
+
+// export function addMultiSelect(payload: any) {
+//   return {
+//     type: "PUSH_ITEMS",
+//     payload,
+//   };
+// }
+
 const reducers = (state: any, action: any) => {
   switch (action.type) {
-    case 'CHANGE_INPUT':
+    case "CHANGE_INPUT":
       return {
         ...state,
         ...action.payload,
       };
-    case 'PUSH_DEGREE':
+    case "PUSH_DEGREE":
       return {
         ...state,
         degree_allowed: action.payload,
+      };
+    // case "PUSH_ITEMS":
+    //   return {
+    //     ...state,
+    //     degree_allowed: action.payload,
+    //   };
+    case "PUSH_BRANCH":
+      return {
+        ...state,
+        branches_allowed: action.payload,
+      };
+    case "PUSH_BACKLOGS":
+      return {
+        ...state,
+        max_backlog: action.payload,
       };
     default:
       return state;
