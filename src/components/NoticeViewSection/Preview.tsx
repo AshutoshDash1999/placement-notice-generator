@@ -78,7 +78,7 @@ function Preview() {
         {values.branches_allowed.length > 0 && (
           <p>
             - Branch:
-            {values.branches_allowed}
+            {values.branches_allowed.toString()}
           </p>
         )}
 

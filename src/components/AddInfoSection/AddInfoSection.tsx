@@ -16,12 +16,13 @@ import { IconPercentage } from "@tabler/icons";
 import { useForm } from "@mantine/form";
 import InputMask from "react-input-mask";
 import { DatePicker, TimeInput } from "@mantine/dates";
-import { addDegree, changeInput, useApp } from "../../context/AppContext";
+import { addDegree, addBranch, addBacklogs, changeInput, useApp } from "../../context/AppContext";
 
 function AddInfoSection() {
   const id = useId();
 
   const degreeData = [
+    { value: "All Degree", label: "All Degree" },
     { value: "B.Sc", label: "B.Sc" },
     { value: "B.Tech", label: "B.Tech" },
     { value: "MCA", label: "MCA" },
@@ -30,6 +31,7 @@ function AddInfoSection() {
   ];
 
   const branchData = [
+    { value: "All Branches", label: "All branches" },
     { value: "CSE", label: "CSE" },
     { value: "IT", label: "IT" },
     { value: "EE", label: "EE" },
@@ -85,9 +87,16 @@ function AddInfoSection() {
   const handleDropDown = (value: any) => {
     // console.log(value);
     // console.log(state.degree_allowed);
-
     dispatch(addDegree(value));
   };
+
+  const handleBranchInput = (value:any) => {
+    dispatch(addBranch(value))
+  }
+
+  const handleBacklogsInput = (value:any) => {
+    dispatch(addBacklogs(value))
+  }
 
   const handleInput = (event: any) => {
     console.log(event.target.value);
@@ -168,7 +177,7 @@ function AddInfoSection() {
           <TextInput
             mb="xs"
             variant="filled"
-            label="CTC"
+            label="CTC (in LPA)"
             name="ctc"
             placeholder="6"
             defaultValue={state.ctc}
@@ -202,14 +211,14 @@ function AddInfoSection() {
                 variant="filled"
                 data={branchData}
                 value={state.branches_allowed}
-                onChange={handleDropDown}
+                onChange={handleBranchInput}
                 label="Branches Allowed"
                 placeholder="Pick branch"
                 searchable
                 clearable
                 required
                 nothingFound="Please choose a valid branch"
-              />
+                />
             </List.Item>
             <List.Item>
               <Select
@@ -221,6 +230,7 @@ function AddInfoSection() {
                 searchable
                 required
                 value={state.max_backlog}
+                onChange={handleBacklogsInput}
                 clearable
               />
             </List.Item>
