@@ -111,6 +111,7 @@ function AddInfoSection() {
         {/* notice id  */}
         <TextInput
           name="notice_id"
+          variant="filled"
           mb="xs"
           id={id}
           required
@@ -124,6 +125,7 @@ function AddInfoSection() {
         {/* company name  */}
         <TextInput
           name="company_name"
+          variant="filled"
           mb="xs"
           id={id}
           required
@@ -139,6 +141,7 @@ function AddInfoSection() {
         <Textarea
           id={id}
           mb="xs"
+          variant="filled"
           placeholder="About Company"
           label="About Company"
           name="about_company"
@@ -155,6 +158,7 @@ function AddInfoSection() {
           <TextInput
             mb="xs"
             label="Job Role"
+            variant="filled"
             placeholder="Full Stack Developer"
             name="job_role"
             defaultValue={state.job_role}
@@ -163,6 +167,7 @@ function AddInfoSection() {
           />
           <TextInput
             mb="xs"
+            variant="filled"
             label="CTC"
             name="ctc"
             placeholder="6"
@@ -170,9 +175,6 @@ function AddInfoSection() {
             onChange={handleInput}
             withAsterisk
           />
-          <Button variant="light" my="xs">
-            Add New Role
-          </Button>
         </div>
 
         {/* eligibility criteria  */}
@@ -182,6 +184,7 @@ function AddInfoSection() {
             <List.Item>
               <MultiSelect
                 name="degree_allowed"
+                variant="filled"
                 data={degreeData}
                 value={state.degree_allowed}
                 onChange={handleDropDown}
@@ -190,11 +193,13 @@ function AddInfoSection() {
                 searchable
                 clearable
                 required
+                nothingFound="Please choose a valid degree"
               />
             </List.Item>
             <List.Item>
               <MultiSelect
                 name="branches_allowed"
+                variant="filled"
                 data={branchData}
                 value={state.branches_allowed}
                 onChange={handleDropDown}
@@ -203,11 +208,13 @@ function AddInfoSection() {
                 searchable
                 clearable
                 required
+                nothingFound="Please choose a valid branch"
               />
             </List.Item>
             <List.Item>
               <Select
                 name="max_backlog"
+                variant="filled"
                 label="Maximum backlogs allowed"
                 placeholder="Pick backlogs count"
                 data={maxBacklogs}
@@ -221,6 +228,7 @@ function AddInfoSection() {
               <Input.Wrapper id={id} label="10th Percentage">
                 <Input
                   id={id}
+                  variant="filled"
                   placeholder="10th percentage"
                   name="tenth_perc"
                   rightSection={<IconPercentage />}
@@ -233,6 +241,7 @@ function AddInfoSection() {
               <Input.Wrapper id={id} label="12th Percentage">
                 <Input
                   name="twelfth_perc"
+                  variant="filled"
                   id={id}
                   placeholder="12th percentage"
                   rightSection={<IconPercentage />}
@@ -245,6 +254,7 @@ function AddInfoSection() {
               <Input.Wrapper id={id} label="Diploma Percentage">
                 <Input
                   name="diploma_perc"
+                  variant="filled"
                   component={InputMask}
                   mask="99"
                   id={id}
@@ -259,6 +269,7 @@ function AddInfoSection() {
               <Input.Wrapper id={id} label="UG Percentage">
                 <Input
                   name="ug_perc"
+                  variant="filled"
                   component={InputMask}
                   mask="99"
                   id={id}
@@ -273,6 +284,7 @@ function AddInfoSection() {
               <Input.Wrapper id={id} label="PG Percentage">
                 <Input
                   name="pg_perc"
+                  variant="filled"
                   component={InputMask}
                   mask="99"
                   id={id}
@@ -287,6 +299,7 @@ function AddInfoSection() {
               <Input.Wrapper id={id} label="Minimum Gap year">
                 <Input
                   name="min_gap"
+                  variant="filled"
                   component={InputMask}
                   mask="9"
                   id={id}
@@ -304,6 +317,7 @@ function AddInfoSection() {
         <div>
           <TextInput
             name="form_link"
+            variant="filled"
             defaultValue={state.form_link}
             onChange={handleInput}
             label="Form Link"
@@ -311,6 +325,7 @@ function AddInfoSection() {
             placeholder="Paste google form link here"
           />
           <DatePicker
+            variant="filled"
             name="form_submission_date"
             placeholder="Pick date"
             label="Form submission date"
@@ -320,6 +335,7 @@ function AddInfoSection() {
             onChange={handleInput}
           />
           <TimeInput
+            variant="filled"
             name="form_submission_time"
             label="Pick time"
             format="12"
