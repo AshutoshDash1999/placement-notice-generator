@@ -25,9 +25,11 @@ function Preview() {
         }}
       >
         {/* notice id */}
-        <p>
-          <b>#{values.notice_id}</b>
-        </p>
+        {values.notice_id && (
+          <p>
+            <b>#{values.notice_id}</b>
+          </p>
+        )}
         {/* company name */}
         {values.company_name && (
           <p>
@@ -54,8 +56,8 @@ function Preview() {
           </p>
         )}
 
-        {(values.degree_allowed ||
-          values.branches_allowed ||
+        {(values.degree_allowed.length ||
+          values.branches_allowed.length ||
           values.max_backlog ||
           values.tenth_perc ||
           values.twelfth_perc ||
