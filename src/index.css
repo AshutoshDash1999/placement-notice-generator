@@ -3,9 +3,14 @@
 }
 
 * {
-  font-family: 'Inter', sans-serif !important;
+  font-family: "Inter", sans-serif !important;
   margin: 0;
   padding: 0;
 
   box-sizing: border-box;
+}
+
+.mantine-SegmentedControl-label div {
+  text-align: center;
+  margin: 0 1em;
 }
