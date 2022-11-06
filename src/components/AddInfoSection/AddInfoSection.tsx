@@ -15,7 +15,6 @@ import {
   NumberInput,
 } from "@mantine/core";
 import { IconPercentage } from "@tabler/icons";
-import { useForm } from "@mantine/form";
 import InputMask from "react-input-mask";
 import { DatePicker, TimeInput } from "@mantine/dates";
 import {
@@ -23,6 +22,7 @@ import {
   addBranch,
   addBacklogs,
   addBond,
+  addDate,
   changeInput,
   useApp,
 } from "../../context/AppContext";
@@ -80,6 +80,10 @@ function AddInfoSection() {
 
   const handleBacklogsInput = (value: any) => {
     dispatch(addBacklogs(value));
+  };
+
+  const handleDateInput = (value: any) => {
+    dispatch(addDate(value.toDateString()));
   };
 
   const bondInputHandler = (event: any) => {
@@ -158,6 +162,7 @@ function AddInfoSection() {
         <div>
           <TextInput
             mb="xs"
+            id={id}
             label="Job Role"
             variant="filled"
             placeholder="Full Stack Developer"
@@ -168,6 +173,7 @@ function AddInfoSection() {
           />
           <TextInput
             mb="xs"
+            id={id}
             variant="filled"
             label="CTC (in LPA)"
             name="ctc"
@@ -179,6 +185,7 @@ function AddInfoSection() {
         </div>
 
         <Switch
+          mb="xs"
           labelPosition="left"
           label="Bond"
           onLabel="YES"
@@ -188,15 +195,18 @@ function AddInfoSection() {
           name="bond"
           defaultValue={state.company_name}
           onChange={bondInputHandler}
+          required
         />
 
         {isBond && (
           <TextInput
+            mb="xs"
             label="Bond Period (in years)"
             variant="filled"
             name="bond_period"
             defaultValue={state.bond_period}
             onChange={handleInput}
+            withAsterisk
           />
         )}
 
@@ -206,6 +216,7 @@ function AddInfoSection() {
           <List type="ordered">
             <List.Item>
               <MultiSelect
+                mb="xs"
                 name="degree_allowed"
                 variant="filled"
                 data={degreeData}
@@ -221,6 +232,7 @@ function AddInfoSection() {
             </List.Item>
             <List.Item>
               <MultiSelect
+                mb="xs"
                 name="branches_allowed"
                 variant="filled"
                 data={branchData}
@@ -236,6 +248,7 @@ function AddInfoSection() {
             </List.Item>
             <List.Item>
               <Select
+                mb="xs"
                 name="max_backlog"
                 variant="filled"
                 label="Maximum backlogs allowed"
@@ -249,8 +262,9 @@ function AddInfoSection() {
               />
             </List.Item>
             <List.Item>
-              <Input.Wrapper id={id} label="10th Percentage">
+              <Input.Wrapper id={id} label="10th Percentage" withAsterisk>
                 <Input
+                  mb="xs"
                   id={id}
                   variant="filled"
                   placeholder="10th percentage"
@@ -258,12 +272,14 @@ function AddInfoSection() {
                   rightSection={<IconPercentage />}
                   defaultValue={state.tenth_perc}
                   onChange={handleInput}
+                  required
                 />
               </Input.Wrapper>
             </List.Item>
             <List.Item>
-              <Input.Wrapper id={id} label="12th Percentage">
+              <Input.Wrapper id={id} label="12th Percentage" withAsterisk>
                 <Input
+                  mb="xs"
                   name="twelfth_perc"
                   variant="filled"
                   id={id}
@@ -277,6 +293,7 @@ function AddInfoSection() {
             <List.Item>
               <Input.Wrapper id={id} label="Diploma Percentage">
                 <Input
+                  mb="xs"
                   name="diploma_perc"
                   variant="filled"
                   component={InputMask}
@@ -292,6 +309,7 @@ function AddInfoSection() {
             <List.Item>
               <Input.Wrapper id={id} label="UG Percentage">
                 <Input
+                  mb="xs"
                   name="ug_perc"
                   variant="filled"
                   component={InputMask}
@@ -307,6 +325,7 @@ function AddInfoSection() {
             <List.Item>
               <Input.Wrapper id={id} label="PG Percentage">
                 <Input
+                  mb="xs"
                   name="pg_perc"
                   variant="filled"
                   component={InputMask}
@@ -322,6 +341,7 @@ function AddInfoSection() {
             <List.Item>
               <Input.Wrapper id={id} label="Minimum Gap year">
                 <Input
+                  mb="xs"
                   name="min_gap"
                   variant="filled"
                   component={InputMask}
@@ -340,6 +360,7 @@ function AddInfoSection() {
         {/* form apply  */}
         <div>
           <TextInput
+            mb="xs"
             name="form_link"
             variant="filled"
             defaultValue={state.form_link}
@@ -350,6 +371,7 @@ function AddInfoSection() {
           />
           {/* <Button></Button> */}
           <DatePicker
+            mb="xs"
             variant="filled"
             name="form_submission_date"
             placeholder="Pick date"
@@ -358,13 +380,14 @@ function AddInfoSection() {
             clearable
             defaultValue={state.form_submission_date}
             inputFormat="DD-MMM-YYYY"
-            onChange={(e) => console.log(e?.toDateString())}
+            onChange={handleDateInput}
             minDate={new Date()}
           />
           <TimeInput
+            mb="xs"
             variant="filled"
             name="form_submission_time"
-            label="Pick time"
+            label="Form submission time"
             format="12"
             withAsterisk
             clearable
@@ -374,12 +397,15 @@ function AddInfoSection() {
         </div>
 
         <Textarea
+          mb="xs"
           placeholder="NB:"
           label="Extra info"
-          withAsterisk
           variant="filled"
           autosize
           minRows={3}
+          name="extra_note"
+          defaultValue={state.extra_note}
+          onChange={handleInput}
         />
       </form>
     </Container>

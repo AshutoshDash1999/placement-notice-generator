@@ -23,6 +23,7 @@ type InitialStateType = {
   form_link: string;
   form_submission_date: Date;
   form_submission_time: Date;
+  extra_note:string;
 };
 
 const initialState = {
@@ -48,6 +49,7 @@ const initialState = {
   form_link: "",
   form_submission_date: new Date(),
   form_submission_time: new Date(),
+  extra_note:"",
 };
 
 const AppContext = createContext<{
@@ -93,6 +95,13 @@ export function addBond(payload: any) {
   };
 }
 
+export function addDate(payload: any) {
+  return {
+    type: "PUSH_DATE",
+    payload,
+  };
+}
+
 // export function addMultiSelect(payload: any) {
 //   return {
 //     type: "PUSH_ITEMS",
@@ -131,6 +140,11 @@ const reducers = (state: any, action: any) => {
       return {
         ...state,
         bond: action.payload,
+      };
+    case "PUSH_DATE":
+      return {
+        ...state,
+        form_submission_date: action.payload,
       };
     default:
       return state;

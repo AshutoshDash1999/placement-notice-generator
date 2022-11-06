@@ -55,14 +55,12 @@ function Preview() {
             {values.ctc} LPA
           </p>
         )}
-        {
-          values.bond && (
-            <p>
-              <b>Bond Period (in years):</b>&nbsp;
-              {values.bond_period}
-            </p>
-          )
-        }
+        {values.bond && (
+          <p>
+            <b>Bond Period (in years):</b>&nbsp;
+            {values.bond_period}
+          </p>
+        )}
 
         {(values.degree_allowed.length ||
           values.branches_allowed.length ||
@@ -139,11 +137,23 @@ function Preview() {
           </p>
         )}
 
-        {values.form_link && (
-          <p>
-            All the eligible and interested candidates are required to fill the
-            form by : <b>{values.form_link}</b>
-          </p>
+        {(values.form_link || values.form_submission_date) && (
+          <div>
+            <p>
+              All the eligible and interested candidates are required to fill
+              the form by <b>{values?.form_submission_date.toDateString()}</b>.
+            </p>
+            <p>
+              <b>{values.form_link}</b>
+            </p>
+          </div>
+        )}
+
+        {values.extra_note && (
+          <div>
+            <p><b>NB:</b></p>
+            <p>{values.extra_note}</p>
+          </div>
         )}
       </Box>
     </div>
