@@ -56,19 +56,19 @@ function NoticeViewSection() {
         onChange={(e) => setPreviewBox(e)}
       />
 
-      <Box>{renderPreview()}</Box>
+      {renderPreview()}
 
-      <Tooltip label="Copy formatted text">
-        {/* value is the formatted text */}
-        {/* TODO: generate the formatted text from the values(coming from global state)*/}
-        <CopyButton value="text_to_be_copied">
-          {({ copied, copy }) => (
-            <Button color={copied ? "green" : "indigo"} onClick={copy}>
-              {copied ? "Copied text" : "Copy"}
-            </Button>
-          )}
-        </CopyButton>
-      </Tooltip>
+      <CopyButton value="https://mantine.dev">
+        {({ copied, copy }) => (
+          <Button
+            sx={{ marginBottom: "1em" }}
+            color={copied ? "teal" : "indigo"}
+            onClick={copy}
+          >
+            {copied ? "Copied" : "Copy"}
+          </Button>
+        )}
+      </CopyButton>
     </Container>
   );
 }
