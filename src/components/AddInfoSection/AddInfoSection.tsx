@@ -107,11 +107,10 @@ function AddInfoSection() {
 
   return (
     <Container>
-      <Title order={3} mb="sm" weight={400}>
+      <Title order={3} my="sm" weight={400}>
         Placement Details
       </Title>
-
-      <ScrollArea p="sm" style={{ height: "80vh" }} scrollHideDelay={0}>
+      <ScrollArea pr="lg" style={{ height: "90vh" }} scrollHideDelay={0}>
         <form onSubmit={formSubmit}>
           {/* <Button type='submit'>Clcik</Button> */}
 
@@ -137,11 +136,25 @@ function AddInfoSection() {
             id={id}
             required
             label="Company Name"
-            placeholder=""
+            placeholder="Ex. Accenture"
             description="Write company name here"
             defaultValue={state.company_name}
             onChange={handleInput}
             // {...form.getInputProps('company_name')}
+          />
+
+          {/* company website  */}
+          <TextInput
+            name="company_website"
+            variant="filled"
+            mb="xs"
+            id={id}
+            required
+            label="Company Website"
+            placeholder="Ex. https://www.accenture.com"
+            description="Write company website here"
+            defaultValue={state.company_website}
+            onChange={handleInput}
           />
 
           {/* about company  */}
@@ -361,6 +374,7 @@ function AddInfoSection() {
 
           {/* form apply  */}
           <div>
+            <Text size="md">Apply Details:</Text>
             <TextInput
               mb="xs"
               name="form_link"
