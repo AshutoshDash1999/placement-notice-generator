@@ -2,13 +2,8 @@ import React from "react";
 import { useApp } from "../../context/AppContext";
 import {
   Box,
-  Button,
-  Container,
-  CopyButton,
-  Tabs,
-  Title,
-  Tooltip,
 } from "@mantine/core";
+
 function WhatsAppPreview() {
   const { state: values } = useApp();
   console.log(values);
@@ -57,7 +52,7 @@ function WhatsAppPreview() {
         )}
         {values.bond && (
           <p>
-            <b>*Bond Period (in years)*:</b>&nbsp;
+            <b>*Bond Period (in years):*</b>&nbsp;
             {values.bond_period}
           </p>
         )}
