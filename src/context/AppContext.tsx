@@ -19,8 +19,8 @@ type InitialStateType = {
 
   // other details:
   form_link: string;
-  form_submission_date: any;
-  form_submission_time: any;
+  form_submission_date: Date;
+  form_submission_time: Date;
 };
 
 const initialState = {

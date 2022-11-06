@@ -71,56 +71,63 @@ function Preview() {
 
         {values.degree_allowed.length > 0 && (
           <p>
-            - Degree:
+            - Degree:&nbsp;
             {values.degree_allowed.toString()}
           </p>
         )}
         {values.branches_allowed.length > 0 && (
           <p>
-            - Branch:
+            - Branch:&nbsp;
             {values.branches_allowed.toString()}
           </p>
         )}
 
         {values.max_backlog && (
           <p>
-            - Maximum Backlog:
+            - Maximum Backlog:&nbsp;
             {values.max_backlog}
           </p>
         )}
 
         {values.tenth_perc && (
           <p>
-            - Min 10th %:
+            - Min 10th %:&nbsp;
             {values.tenth_perc}%
           </p>
         )}
 
         {values.twelfth_perc && (
           <p>
-            - Min 12th %:
+            - Min 12th %:&nbsp;
             {values.twelfth_perc}%
           </p>
         )}
 
         {values.diploma_perc && (
           <p>
-            - Min diploma %:
+            - Min diploma %:&nbsp;
             {values.diploma_perc}%
           </p>
         )}
 
         {values.ug_perc && (
           <p>
-            - Min UG %:
+            - Min UG %:&nbsp;
             {values.ug_perc}%
           </p>
         )}
 
         {values.pg_perc && (
           <p>
-            - Min PG %:
+            - Min PG %:&nbsp;
             {values.pg_perc}%
+          </p>
+        )}
+
+        {values.min_gap && (
+          <p>
+            - Min Gap Year:&nbsp;
+            {values.min_gap} year
           </p>
         )}
 

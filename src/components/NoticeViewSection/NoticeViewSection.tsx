@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -17,8 +17,19 @@ import TelegramPreview from "./TelegramPreview";
 function NoticeViewSection() {
   const { state: values } = useApp();
   console.log(values);
-  const [previewBox, setPreviewBox] = useState("preview")
-
+  const [previewBox, setPreviewBox] = useState("preview");
+  const renderPreview = () => {
+    switch (previewBox) {
+      case "preview":
+        return <Preview />;
+      case "whatsapp":
+        return <WhatsAppPreview/>
+      case "telegram":
+        return <TelegramPreview/>
+      default:
+        return <Preview />;
+    }
+  };
   return (
     <Container>
       <Title order={3} weight={400}>
@@ -44,9 +55,7 @@ function NoticeViewSection() {
       />
 
       <Box>
-        {
-          previewBox==="preview" ? <Preview/>: previewBox==="whatsapp" ? <WhatsAppPreview/>:previewBox==="telegram" ? <TelegramPreview/>:""
-        }
+        {renderPreview()}
       </Box>
 
       <Tooltip label="Copy formatted text">

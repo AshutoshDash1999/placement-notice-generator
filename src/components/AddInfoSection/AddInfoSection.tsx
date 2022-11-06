@@ -334,6 +334,7 @@ function AddInfoSection() {
             withAsterisk
             placeholder="Paste google form link here"
           />
+          {/* <Button></Button> */}
           <DatePicker
             variant="filled"
             name="form_submission_date"
@@ -342,7 +343,9 @@ function AddInfoSection() {
             withAsterisk
             clearable
             defaultValue={state.form_submission_date}
-            onChange={handleInput}
+            inputFormat="DD-MMM-YYYY"
+            onChange={(e)=>console.log(e?.toDateString())}
+            minDate={new Date()}
           />
           <TimeInput
             variant="filled"
@@ -352,7 +355,7 @@ function AddInfoSection() {
             withAsterisk
             clearable
             defaultValue={state.form_submission_time}
-            onChange={handleInput}
+            onChange={(e)=>console.log(e.getHours())}
           />
         </div>
       </form>
