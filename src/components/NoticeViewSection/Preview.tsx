@@ -10,7 +10,6 @@ import {
 } from "@mantine/core";
 function Preview() {
   const { state: values } = useApp();
-  console.log(values);
 
   return (
     <ScrollArea
