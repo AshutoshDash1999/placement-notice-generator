@@ -16,8 +16,8 @@ import TelegramPreview from "./TelegramPreview";
 
 function NoticeViewSection() {
   const { state: values } = useApp();
-  console.log(values);
   const [previewBox, setPreviewBox] = useState("preview");
+
   const renderPreview = () => {
     switch (previewBox) {
       case "preview":
@@ -30,6 +30,7 @@ function NoticeViewSection() {
         return <Preview />;
     }
   };
+
   return (
     <Container sx={{ position: "sticky", top: 0 }}>
       <Title order={3} py="sm" weight={400}>
@@ -37,6 +38,7 @@ function NoticeViewSection() {
       </Title>
 
       <SegmentedControl
+        color="indigo"
         data={[
           {
             value: "preview",
@@ -61,7 +63,7 @@ function NoticeViewSection() {
         {/* TODO: generate the formatted text from the values(coming from global state)*/}
         <CopyButton value="text_to_be_copied">
           {({ copied, copy }) => (
-            <Button color={copied ? "teal" : "blue"} onClick={copy}>
+            <Button color={copied ? "green" : "indigo"} onClick={copy}>
               {copied ? "Copied text" : "Copy"}
             </Button>
           )}
