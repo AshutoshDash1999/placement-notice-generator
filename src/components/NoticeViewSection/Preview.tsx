@@ -55,6 +55,14 @@ function Preview() {
             {values.ctc} LPA
           </p>
         )}
+        {
+          values.bond && (
+            <p>
+              <b>Bond Period (in years):</b>&nbsp;
+              {values.bond_period}
+            </p>
+          )
+        }
 
         {(values.degree_allowed.length ||
           values.branches_allowed.length ||

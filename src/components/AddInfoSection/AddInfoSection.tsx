@@ -1,4 +1,4 @@
-import React, { useId } from "react";
+import React, { useId, useState } from "react";
 import {
   Container,
   Button,
@@ -11,16 +11,25 @@ import {
   TextInput,
   Title,
   Select,
+  Switch,
+  NumberInput,
 } from "@mantine/core";
 import { IconPercentage } from "@tabler/icons";
 import { useForm } from "@mantine/form";
 import InputMask from "react-input-mask";
 import { DatePicker, TimeInput } from "@mantine/dates";
-import { addDegree, addBranch, addBacklogs, changeInput, useApp } from "../../context/AppContext";
+import {
+  addDegree,
+  addBranch,
+  addBacklogs,
+  addBond,
+  changeInput,
+  useApp,
+} from "../../context/AppContext";
 
 function AddInfoSection() {
   const id = useId();
-
+  const [isBond, setIsBond] = useState(false);
   const degreeData = [
     { value: "All Degree", label: "All Degree" },
     { value: "B.Sc", label: "B.Sc" },
@@ -57,31 +66,6 @@ function AddInfoSection() {
     { value: "7", label: "7" },
   ];
 
-  // const [placementNoticeData, setPlacementNoticeData] = useState({
-  //   notice_id: '',
-  //   company_name: '',
-  //   about_company: '',
-  //   job_role: '',
-  //   ctc: '',
-  //   // eligibility criteria
-  //   degree_allowed: [],
-  //   branchses_allowed: [],
-  //   max_backlog: '',
-  //   tenth_perc: '',
-  //   twelfth_perc: '',
-  //   diploma_perc: '',
-  //   ug_perc: '',
-  //   pg_perc: '',
-  //   min_gap: '',
-
-  //   // other details:
-  //   form_link: '',
-  //   form_submission_date: '',
-  //   pick_time: '',
-  // });
-
-  // Clear these 👆 after providing values to all input
-
   const { state, dispatch } = useApp();
 
   const handleDropDown = (value: any) => {
@@ -90,13 +74,21 @@ function AddInfoSection() {
     dispatch(addDegree(value));
   };
 
-  const handleBranchInput = (value:any) => {
-    dispatch(addBranch(value))
-  }
+  const handleBranchInput = (value: any) => {
+    dispatch(addBranch(value));
+  };
 
-  const handleBacklogsInput = (value:any) => {
-    dispatch(addBacklogs(value))
-  }
+  const handleBacklogsInput = (value: any) => {
+    dispatch(addBacklogs(value));
+  };
+
+  const bondInputHandler = (event: any) => {
+    setIsBond(event.currentTarget.checked);
+    dispatch(addBond(event.currentTarget.checked));
+    if (!event.currentTarget.checked) {
+      dispatch(changeInput({ bond_period: "" }));
+    }
+  };
 
   const handleInput = (event: any) => {
     console.log(event.target.value);
@@ -186,6 +178,28 @@ function AddInfoSection() {
           />
         </div>
 
+        <Switch
+          labelPosition="left"
+          label="Bond"
+          onLabel="YES"
+          offLabel="NO"
+          size="md"
+          // onChange={(event) => setIsBond(event.currentTarget.checked)}
+          name="bond"
+          defaultValue={state.company_name}
+          onChange={bondInputHandler}
+        />
+
+        {isBond && (
+          <TextInput
+            label="Bond Period (in years)"
+            variant="filled"
+            name="bond_period"
+            defaultValue={state.bond_period}
+            onChange={handleInput}
+          />
+        )}
+
         {/* eligibility criteria  */}
         <div>
           <Text size="md">Eligibility Criteria:</Text>
@@ -218,7 +232,7 @@ function AddInfoSection() {
                 clearable
                 required
                 nothingFound="Please choose a valid branch"
-                />
+              />
             </List.Item>
             <List.Item>
               <Select
@@ -344,7 +358,7 @@ function AddInfoSection() {
             clearable
             defaultValue={state.form_submission_date}
             inputFormat="DD-MMM-YYYY"
-            onChange={(e)=>console.log(e?.toDateString())}
+            onChange={(e) => console.log(e?.toDateString())}
             minDate={new Date()}
           />
           <TimeInput
@@ -355,9 +369,18 @@ function AddInfoSection() {
             withAsterisk
             clearable
             defaultValue={state.form_submission_time}
-            onChange={(e)=>console.log(e.getHours())}
+            onChange={(e) => console.log(e.getHours())}
           />
         </div>
+
+        <Textarea
+          placeholder="NB:"
+          label="Extra info"
+          withAsterisk
+          variant="filled"
+          autosize
+          minRows={3}
+        />
       </form>
     </Container>
   );

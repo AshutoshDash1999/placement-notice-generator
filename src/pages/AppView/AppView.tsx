@@ -3,6 +3,7 @@ import Header from '../../components/Header/Header';
 import { Container, Grid } from '@mantine/core';
 import AddInfoSection from '../../components/AddInfoSection/AddInfoSection';
 import NoticeViewSection from '../../components/NoticeViewSection/NoticeViewSection';
+import Footer from '../../components/footer/Footer';
 
 function AppView() {
   return (
@@ -18,6 +19,7 @@ function AppView() {
           </Grid.Col>
         </Grid>
       </Container>
+      <Footer/>
     </>
   );
 }

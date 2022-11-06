@@ -6,6 +6,8 @@ type InitialStateType = {
   about_company: string;
   job_role: string;
   ctc: string;
+  bond: boolean;
+  bond_period: string;
   // eligibility criteria
   degree_allowed: string[];
   branches_allowed: string[];
@@ -29,6 +31,8 @@ const initialState = {
   about_company: "",
   job_role: "",
   ctc: "",
+  bond: false,
+  bond_period: "",
   // eligibility criteria
   degree_allowed: [],
   branches_allowed: [],
@@ -82,6 +86,13 @@ export function addBacklogs(payload: any) {
   };
 }
 
+export function addBond(payload: any) {
+  return {
+    type: "PUSH_BOND",
+    payload,
+  };
+}
+
 // export function addMultiSelect(payload: any) {
 //   return {
 //     type: "PUSH_ITEMS",
@@ -115,6 +126,11 @@ const reducers = (state: any, action: any) => {
       return {
         ...state,
         max_backlog: action.payload,
+      };
+    case "PUSH_BOND":
+      return {
+        ...state,
+        bond: action.payload,
       };
     default:
       return state;
