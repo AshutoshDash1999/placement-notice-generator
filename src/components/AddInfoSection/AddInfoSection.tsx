@@ -110,7 +110,7 @@ function AddInfoSection() {
       <Title order={3} my="sm" weight={400}>
         Placement Details
       </Title>
-      <ScrollArea pr="lg" style={{ height: "90vh" }} scrollHideDelay={0}>
+      <ScrollArea style={{ height: "90vh" }} scrollHideDelay={0}>
         <form onSubmit={formSubmit}>
           {/* <Button type='submit'>Clcik</Button> */}
 

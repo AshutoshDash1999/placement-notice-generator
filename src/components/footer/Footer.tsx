@@ -9,9 +9,12 @@ function Footer() {
         label={
           <Text
             size="sm"
-            sx={{ display: "flex", alignItems: "center", gap: "6px" }}
+            sx={{
+              textAlign: "center",
+            }}
           >
-            Made with <IconHeart size={14} /> by
+            Made with <IconHeart size={14} style={{ marginBottom: "-3px" }} />{" "}
+            by{" "}
             <a href="https://ashutoshdash.netlify.app/" target="_blank">
               Ashutosh Dash
             </a>{" "}
