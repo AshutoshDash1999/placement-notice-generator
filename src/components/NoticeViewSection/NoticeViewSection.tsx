@@ -23,16 +23,16 @@ function NoticeViewSection() {
       case "preview":
         return <Preview />;
       case "whatsapp":
-        return <WhatsAppPreview/>
+        return <WhatsAppPreview />;
       case "telegram":
-        return <TelegramPreview/>
+        return <TelegramPreview />;
       default:
         return <Preview />;
     }
   };
   return (
-    <Container>
-      <Title order={3} weight={400}>
+    <Container sx={{ position: "sticky", top: 0 }}>
+      <Title order={3} py="sm" weight={400}>
         Notice View
       </Title>
 
@@ -54,9 +54,7 @@ function NoticeViewSection() {
         onChange={(e) => setPreviewBox(e)}
       />
 
-      <Box>
-        {renderPreview()}
-      </Box>
+      <Box>{renderPreview()}</Box>
 
       <Tooltip label="Copy formatted text">
         {/* value is the formatted text */}
