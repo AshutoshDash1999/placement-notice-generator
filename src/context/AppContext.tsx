@@ -3,6 +3,7 @@ import { createContext, useReducer, useContext, type Dispatch } from "react";
 type InitialStateType = {
   notice_id: string;
   company_name: string;
+  company_website: string;
   about_company: string;
   job_role: string;
   ctc: string;
@@ -23,12 +24,13 @@ type InitialStateType = {
   form_link: string;
   form_submission_date: Date;
   form_submission_time: Date;
-  extra_note:string;
+  extra_note: string;
 };
 
 const initialState = {
   notice_id: "",
   company_name: "",
+  company_website: "",
   about_company: "",
   job_role: "",
   ctc: "",
@@ -49,7 +51,7 @@ const initialState = {
   form_link: "",
   form_submission_date: new Date(),
   form_submission_time: new Date(),
-  extra_note:"",
+  extra_note: "",
 };
 
 const AppContext = createContext<{
@@ -151,9 +153,7 @@ const reducers = (state: any, action: any) => {
   }
 };
 
-export const AppContextProvider: React.FC<React.ReactNode> = ({
-  children,
-}: any) => {
+export const AppContextProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(reducers, initialState);
 
   return (
