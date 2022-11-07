@@ -26,6 +26,7 @@ import {
   addDate,
   changeInput,
   useApp,
+  addTime,
 } from "../../context/AppContext";
 
 function AddInfoSection() {
@@ -84,7 +85,11 @@ function AddInfoSection() {
   };
 
   const handleDateInput = (value: any) => {
-    dispatch(addDate(value.toDateString()));
+    dispatch(addDate(value));
+  };
+
+  const handleTimeInput = (value: any) => {
+    dispatch(addTime(value));
   };
 
   const bondInputHandler = (event: any) => {
@@ -96,7 +101,7 @@ function AddInfoSection() {
   };
 
   const handleInput = (event: any) => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     dispatch(changeInput({ [event.target.name]: event.target.value }));
   };
 
@@ -375,6 +380,7 @@ function AddInfoSection() {
           {/* form apply  */}
           <div>
             <Text size="md">Apply Details:</Text>
+            {/* apply form link */}
             <TextInput
               mb="xs"
               name="form_link"
@@ -385,7 +391,6 @@ function AddInfoSection() {
               withAsterisk
               placeholder="Paste google form link here"
             />
-            {/* <Button></Button> */}
             <DatePicker
               mb="xs"
               variant="filled"
@@ -408,7 +413,7 @@ function AddInfoSection() {
               withAsterisk
               clearable
               defaultValue={state.form_submission_time}
-              onChange={(e) => console.log(e.getHours())}
+              onChange={handleTimeInput}
             />
           </div>
 
