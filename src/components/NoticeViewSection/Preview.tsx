@@ -1,5 +1,6 @@
 import { useApp } from "../../context/AppContext";
-import { Box, Button, CopyButton, ScrollArea } from "@mantine/core";
+import { Box, ScrollArea } from "@mantine/core";
+
 function Preview() {
   const { state: values } = useApp();
 
@@ -7,7 +8,6 @@ function Preview() {
     <Box>
       <ScrollArea
         style={{ height: "60vh" }}
-        scrollHideDelay={0}
         sx={{
           margin: "1em 0",
           border: "1px solid #ced4da",
@@ -142,8 +142,13 @@ function Preview() {
         {(values.form_link || values.form_submission_date) && (
           <p>
             All the eligible and interested candidates are required to fill the
-            form by <b>{values?.form_submission_date.toDateString()}</b>.<br />
-            <b>{values.form_link}</b>
+            form by{" "}
+            <b>
+              {values?.form_submission_time.toLocaleTimeString()},{" "}
+              {values?.form_submission_date.toDateString()}
+            </b>
+            .<br />
+            <b>Apply link</b>: <a href={values.form_link}>{values.form_link}</a>
           </p>
         )}
 
@@ -155,18 +160,6 @@ function Preview() {
           </p>
         )}
       </ScrollArea>
-
-      <CopyButton value="">
-        {({ copied, copy }) => (
-          <Button
-            sx={{ marginBottom: "1em" }}
-            color={copied ? "teal" : "indigo"}
-            onClick={copy}
-          >
-            {copied ? "Copied" : "Copy"}
-          </Button>
-        )}
-      </CopyButton>
     </Box>
   );
 }
