@@ -104,6 +104,13 @@ export function addDate(payload: any) {
   };
 }
 
+export function addTime(payload: any) {
+  return {
+    type: "PUSH_TIME",
+    payload,
+  };
+}
+
 // export function addMultiSelect(payload: any) {
 //   return {
 //     type: "PUSH_ITEMS",
@@ -147,6 +154,11 @@ const reducers = (state: any, action: any) => {
       return {
         ...state,
         form_submission_date: action.payload,
+      };
+    case "PUSH_TIME":
+      return {
+        ...state,
+        form_submission_time: action.payload,
       };
     default:
       return state;
