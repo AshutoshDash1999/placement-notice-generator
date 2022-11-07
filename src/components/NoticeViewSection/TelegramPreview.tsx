@@ -17,7 +17,7 @@ function TelegramPreview() {
     values.company_website
   }\n\n**Job Role:** ${values.job_role}\n**CTC:** ${
     values.ctc
-  } LPA\n\n **Bond Period (in years):** ${
+  } LPA\n\n**Bond Period (in years):** ${
     values.bond_period
   }\n\n**Eligibility Criteria**\n- Degree: ${values.degree_allowed.toString()}\n- Branch:${values.branches_allowed.toString()}\n- Maximum Backlog: ${
     values.max_backlog
@@ -27,25 +27,23 @@ function TelegramPreview() {
     values.ug_perc
   }%\n- Min PG %: ${values.pg_perc}%\n- Min Gap Year: ${
     values.min_gap
-  } year\n\n All the eligible and interested candidates are required to fill the form by **${values?.form_submission_date.toDateString()}.**\n**${
+  } year\n\nAll the eligible and interested candidates are required to fill the form by **${values?.form_submission_date.toDateString()}.**\n\n**Apply Link**: ${
     values.form_link
-  }**\n\n**NB:**\n${values.extra_note}\n</div>`;
+  }\n\n**NB:**\n${values.extra_note}\n</div>`;
 
   const copyCLickHandler = () => {
     navigator.clipboard.writeText(convertToPlain(htmlString));
     showNotification({
-      message: 'Text for Telegram is copied! 😊',
+      message: "Text for Telegram is copied! 😊",
       autoClose: 1500,
-      color: 'blue',
-    })
+      color: "blue",
+    });
   };
 
   return (
     <Box>
-      <Button my="sm" color="indigo" onClick={copyCLickHandler}>Copy</Button>
       <ScrollArea
         style={{ height: "60vh" }}
-        scrollHideDelay={0}
         sx={{
           margin: "1em 0",
           border: "1px solid #ced4da",
@@ -180,9 +178,15 @@ function TelegramPreview() {
         {(values.form_link || values.form_submission_date) && (
           <p>
             All the eligible and interested candidates are required to fill the
-            form by <b>**{values?.form_submission_date.toDateString()}**</b>.
+            form by{" "}
+            <b>
+              **{values?.form_submission_time.toLocaleTimeString()},{" "}
+              {values?.form_submission_date.toDateString()}**
+            </b>
+            .
             <br />
-            <b>**{values.form_link}**</b>
+            <b>**Apply Link**</b>
+            {values.form_link}
           </p>
         )}
 
@@ -194,6 +198,9 @@ function TelegramPreview() {
           </p>
         )}
       </ScrollArea>
+      <Button mb="sm" color="indigo" onClick={copyCLickHandler}>
+        Copy
+      </Button>
     </Box>
   );
 }
