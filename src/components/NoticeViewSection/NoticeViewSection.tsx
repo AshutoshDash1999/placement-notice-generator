@@ -58,17 +58,6 @@ function NoticeViewSection() {
 
       {renderPreview()}
 
-      <CopyButton value="https://mantine.dev">
-        {({ copied, copy }) => (
-          <Button
-            sx={{ marginBottom: "1em" }}
-            color={copied ? "teal" : "indigo"}
-            onClick={copy}
-          >
-            {copied ? "Copied" : "Copy"}
-          </Button>
-        )}
-      </CopyButton>
     </Container>
   );
 }
