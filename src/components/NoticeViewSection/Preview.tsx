@@ -150,7 +150,7 @@ function Preview() {
             </b>
             {" "}on{" "}
             <b>
-              {dayjs(values?.form_submission_date).format("DD MMMM YYYY")}
+              {dayjs(values?.form_submission_date).format("DD MMMM YYYY (dddd)")}
             </b>
             .<br />
             Apply link: <b><a href={values.form_link}>{values.form_link}</a></b>

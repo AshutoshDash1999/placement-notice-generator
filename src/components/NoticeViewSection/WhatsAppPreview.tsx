@@ -182,14 +182,14 @@ function WhatsAppPreview() {
             All the eligible and interested candidates are required to fill the
             form by{" "}
             <b>
-              {dayjs(values?.form_submission_time).format("hh:mm A")}
+              *{dayjs(values?.form_submission_time).format("hh:mm A")}*
             </b>
             {" "}on{" "}
             <b>
-              {dayjs(values?.form_submission_date).format("DD MMMM YYYY (dddd)")}
+              *{dayjs(values?.form_submission_date).format("DD MMMM YYYY (dddd)")}*
             </b>
             .<br />
-            Apply link: <b><a href={values.form_link}>{values.form_link}</a></b>
+            Apply link: <b>*<a href={values.form_link}>{values.form_link}</a>*</b>
           </p>
         )}
 
@@ -201,7 +201,7 @@ function WhatsAppPreview() {
           </p>
         )}
       </ScrollArea>
-      <Button mb="sm" color="indigo" onClick={copyCLickHandler}>
+      <Button fullWidth mb="sm" color="indigo" onClick={copyCLickHandler}>
         Copy
       </Button>
     </Box>
