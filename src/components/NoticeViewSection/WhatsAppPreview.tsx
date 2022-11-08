@@ -28,7 +28,7 @@ function WhatsAppPreview() {
     values.ug_perc
   }%\n- Min PG %: ${values.pg_perc}%\n- Min Gap Year: ${
     values.min_gap
-  } year\n\nAll the eligible and interested candidates are required to fill the form by *${dayjs(values?.form_submission_time).format("hh:mm A")}* on *${dayjs(values?.form_submission_date).format("DD MMMM YYYY")}*\n\n*Apply Link*: ${
+  } year\n\nAll the eligible and interested candidates are required to fill the form by *${dayjs(values?.form_submission_time).format("hh:mm A")}* on *${dayjs(values?.form_submission_date).format("DD MMMM YYYY (dddd)")}*\n\n*Apply Link*: ${
     values.form_link
   }\n\n*NB:*\n${values.extra_note}\n</div>`;
 
@@ -186,7 +186,7 @@ function WhatsAppPreview() {
             </b>
             {" "}on{" "}
             <b>
-              {dayjs(values?.form_submission_date).format("DD MMMM YYYY")}
+              {dayjs(values?.form_submission_date).format("DD MMMM YYYY (dddd)")}
             </b>
             .<br />
             Apply link: <b><a href={values.form_link}>{values.form_link}</a></b>
