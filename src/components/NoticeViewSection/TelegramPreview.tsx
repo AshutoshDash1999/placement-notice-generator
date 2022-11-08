@@ -1,6 +1,7 @@
 import { useApp } from "../../context/AppContext";
 import { Box, Button, ScrollArea } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
+import dayjs from "dayjs";
 
 function TelegramPreview() {
   const { state: values } = useApp();
@@ -27,7 +28,7 @@ function TelegramPreview() {
     values.ug_perc
   }%\n- Min PG %: ${values.pg_perc}%\n- Min Gap Year: ${
     values.min_gap
-  } year\n\nAll the eligible and interested candidates are required to fill the form by **${values?.form_submission_date.toDateString()}.**\n\n**Apply Link**: ${
+  } year\n\nAll the eligible and interested candidates are required to fill the form by **${dayjs(values?.form_submission_time).format("hh:mm A")}* on *${dayjs(values?.form_submission_date).format("DD MMMM YYYY")}**\n\n**Apply Link**: ${
     values.form_link
   }\n\n**NB:**\n${values.extra_note}\n</div>`;
 
@@ -180,13 +181,14 @@ function TelegramPreview() {
             All the eligible and interested candidates are required to fill the
             form by{" "}
             <b>
-              **{values?.form_submission_time.toLocaleTimeString()},{" "}
-              {values?.form_submission_date.toDateString()}**
+              {dayjs(values?.form_submission_time).format("hh:mm A")}
             </b>
-            .
-            <br />
-            <b>**Apply Link**</b>
-            {values.form_link}
+            {" "}on{" "}
+            <b>
+              {dayjs(values?.form_submission_date).format("DD MMMM YYYY")}
+            </b>
+            .<br />
+            Apply link: <b><a href={values.form_link}>{values.form_link}</a></b>
           </p>
         )}
 

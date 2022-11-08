@@ -1,9 +1,11 @@
 import { useApp } from "../../context/AppContext";
 import { Box, ScrollArea } from "@mantine/core";
+import dayjs from 'dayjs';
 
 function Preview() {
   const { state: values } = useApp();
-
+  console.log(dayjs().format());
+  
   return (
     <Box>
       <ScrollArea
@@ -144,11 +146,14 @@ function Preview() {
             All the eligible and interested candidates are required to fill the
             form by{" "}
             <b>
-              {values?.form_submission_time.toLocaleTimeString()},{" "}
-              {values?.form_submission_date.toDateString()}
+              {dayjs(values?.form_submission_time).format("hh:mm A")}
+            </b>
+            {" "}on{" "}
+            <b>
+              {dayjs(values?.form_submission_date).format("DD MMMM YYYY")}
             </b>
             .<br />
-            <b>Apply link</b>: <a href={values.form_link}>{values.form_link}</a>
+            Apply link: <b><a href={values.form_link}>{values.form_link}</a></b>
           </p>
         )}
 
