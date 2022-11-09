@@ -8,11 +8,13 @@ import {
   Title,
   Tooltip,
   SegmentedControl,
+  Center,
 } from "@mantine/core";
 import { useApp } from "../../context/AppContext";
 import Preview from "./Preview";
 import WhatsAppPreview from "./WhatsAppPreview";
 import TelegramPreview from "./TelegramPreview";
+import {IconEye, IconBrandWhatsapp, IconBrandTelegram } from "@tabler/icons";
 
 function NoticeViewSection() {
   const { state: values } = useApp();
@@ -42,22 +44,36 @@ function NoticeViewSection() {
         data={[
           {
             value: "preview",
-            label: <Box ml={10}>Preview</Box>,
+            label: (
+              <Center>
+                <IconEye size={16} />
+                <Box ml={10}>Preview</Box>
+              </Center>
+            ),
           },
           {
             value: "whatsapp",
-            label: <Box ml={10}>WhatsApp</Box>,
+            label: (
+              <Center>
+                <IconBrandWhatsapp size={16} />
+                <Box ml={10}>WhatsApp</Box>
+              </Center>
+            ),
           },
           {
             value: "telegram",
-            label: <Box ml={10}>Telegram</Box>,
+            label: (
+              <Center>
+                <IconBrandTelegram size={16} />
+                <Box ml={10}>Telegram</Box>
+              </Center>
+            ),
           },
         ]}
         onChange={(e) => setPreviewBox(e)}
       />
 
       {renderPreview()}
-
     </Container>
   );
 }
