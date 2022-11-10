@@ -50,6 +50,11 @@ function TelegramPreview() {
     link.download = `${values.notice_id}_Telegram_Template`;
     link.href = url;
     link.click();
+    showNotification({
+      message: "Template for Telegram is downloaded! 😊",
+      autoClose: 1500,
+      color: "blue",
+    });
   }
 
   return (

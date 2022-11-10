@@ -53,6 +53,11 @@ function WhatsAppPreview() {
     link.download = `${values.notice_id}_WhatsApp_Template`;
     link.href = url;
     link.click();
+    showNotification({
+      message: "Template for Whatsapp is downloaded! 😊",
+      autoClose: 1500,
+      color: "blue",
+    });
   }
 
   return (
