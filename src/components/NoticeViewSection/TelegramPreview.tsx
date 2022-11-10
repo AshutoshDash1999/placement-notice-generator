@@ -1,5 +1,5 @@
 import { useApp } from "../../context/AppContext";
-import { Box, Button, ScrollArea } from "@mantine/core";
+import { Box, Button, Grid, ScrollArea } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import dayjs from "dayjs";
 
@@ -33,6 +33,7 @@ function TelegramPreview() {
   }\n\n**NB:**\n${values.extra_note}\n</div>`;
 
   const copyCLickHandler = () => {
+    // function to copy preview content 
     navigator.clipboard.writeText(convertToPlain(htmlString));
     showNotification({
       message: "Text for Telegram is copied! 😊",
@@ -40,6 +41,16 @@ function TelegramPreview() {
       color: "blue",
     });
   };
+
+  const downloadTxtFile = () => {
+    //function to download a text file
+    const file = new Blob([htmlString.replace("<div>", "").replace("</div>", "")], {type: 'text/plain'});
+    const url = URL.createObjectURL(file);
+    const link = document.createElement("a");
+    link.download = `${values.notice_id}_Telegram_Template`;
+    link.href = url;
+    link.click();
+  }
 
   return (
     <Box>
@@ -200,9 +211,31 @@ function TelegramPreview() {
           </p>
         )}
       </ScrollArea>
-      <Button mb="sm" fullWidth color="indigo" onClick={copyCLickHandler}>
-        Copy
-      </Button>
+
+      <Grid>
+        <Grid.Col md={6}>
+          <Button
+            fullWidth
+            mb="sm"
+            color="indigo"
+            variant="filled"
+            onClick={copyCLickHandler}
+          >
+            Copy
+          </Button>
+        </Grid.Col>
+        <Grid.Col md={6}>
+          <Button
+            fullWidth
+            variant="outline"
+            mb="sm"
+            color=""
+            onClick={downloadTxtFile}
+          >
+            Download Telegram file
+          </Button>
+        </Grid.Col>
+      </Grid>
     </Box>
   );
 }

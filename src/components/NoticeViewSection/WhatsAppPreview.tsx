@@ -1,5 +1,5 @@
 import { useApp } from "../../context/AppContext";
-import { Box, Button, CopyButton, ScrollArea } from "@mantine/core";
+import { Box, Button, CopyButton, Grid, ScrollArea } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import dayjs from "dayjs";
 
@@ -28,9 +28,13 @@ function WhatsAppPreview() {
     values.ug_perc
   }%\n- Min PG %: ${values.pg_perc}%\n- Min Gap Year: ${
     values.min_gap
-  } year\n\nAll the eligible and interested candidates are required to fill the form by *${dayjs(values?.form_submission_time).format("hh:mm A")}* on *${dayjs(values?.form_submission_date).format("DD MMMM YYYY (dddd)")}*\n\n*Apply Link*: ${
-    values.form_link
-  }\n\n*NB:*\n${values.extra_note}\n</div>`;
+  } year\n\nAll the eligible and interested candidates are required to fill the form by *${dayjs(
+    values?.form_submission_time
+  ).format("hh:mm A")}* on *${dayjs(values?.form_submission_date).format(
+    "DD MMMM YYYY (dddd)"
+  )}*\n\n*Apply Link*: ${values.form_link}\n\n*NB:*\n${
+    values.extra_note
+  }\n</div>`;
 
   const copyCLickHandler = () => {
     navigator.clipboard.writeText(convertToPlain(htmlString));
@@ -40,6 +44,16 @@ function WhatsAppPreview() {
       color: "green",
     });
   };
+
+  const downloadTxtFile = () => {
+    //function to download a text file
+    const file = new Blob([htmlString.replace("<div>", "").replace("</div>", "")], {type: 'text/plain'});
+    const url = URL.createObjectURL(file);
+    const link = document.createElement("a");
+    link.download = `${values.notice_id}_WhatsApp_Template`;
+    link.href = url;
+    link.click();
+  }
 
   return (
     <Box>
@@ -181,15 +195,19 @@ function WhatsAppPreview() {
           <p>
             All the eligible and interested candidates are required to fill the
             form by{" "}
+            <b>*{dayjs(values?.form_submission_time).format("hh:mm A")}*</b> on{" "}
             <b>
-              *{dayjs(values?.form_submission_time).format("hh:mm A")}*
-            </b>
-            {" "}on{" "}
-            <b>
-              *{dayjs(values?.form_submission_date).format("DD MMMM YYYY (dddd)")}*
+              *
+              {dayjs(values?.form_submission_date).format(
+                "DD MMMM YYYY (dddd)"
+              )}
+              *
             </b>
             .<br />
-            Apply link: <b>*<a href={values.form_link}>{values.form_link}</a>*</b>
+            Apply link:{" "}
+            <b>
+              *<a href={values.form_link}>{values.form_link}</a>*
+            </b>
           </p>
         )}
 
@@ -201,9 +219,31 @@ function WhatsAppPreview() {
           </p>
         )}
       </ScrollArea>
-      <Button fullWidth mb="sm" color="indigo" onClick={copyCLickHandler}>
-        Copy
-      </Button>
+      
+      <Grid>
+        <Grid.Col md={6}>
+          <Button
+            fullWidth
+            mb="sm"
+            color="indigo"
+            variant="filled"
+            onClick={copyCLickHandler}
+          >
+            Copy
+          </Button>
+        </Grid.Col>
+        <Grid.Col md={6}>
+          <Button
+            fullWidth
+            variant="outline"
+            mb="sm"
+            color=""
+            onClick={downloadTxtFile}
+          >
+            Download Whatsapp file
+          </Button>
+        </Grid.Col>
+      </Grid>
     </Box>
   );
 }
