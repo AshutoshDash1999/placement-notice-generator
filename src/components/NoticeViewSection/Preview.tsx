@@ -4,7 +4,6 @@ import dayjs from 'dayjs';
 
 function Preview() {
   const { state: values } = useApp();
-  console.log(dayjs().format());
   
   return (
     <Box>

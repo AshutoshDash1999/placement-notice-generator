@@ -107,7 +107,6 @@ function AddInfoSection() {
 
   const formSubmit = (event: any) => {
     event.preventDefault();
-    console.log(state);
   };
 
   return (
