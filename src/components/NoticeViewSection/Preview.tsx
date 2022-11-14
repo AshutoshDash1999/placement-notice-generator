@@ -1,20 +1,20 @@
-import { useApp } from "../../context/AppContext";
-import { Box, ScrollArea } from "@mantine/core";
+import { useApp } from '../../context/AppContext';
+import { Box, ScrollArea } from '@mantine/core';
 import dayjs from 'dayjs';
 
 function Preview() {
   const { state: values } = useApp();
-  console.log(dayjs().format());
-  
+  // console.log(dayjs().format());
+
   return (
     <Box>
       <ScrollArea
-        style={{ height: "60vh" }}
+        style={{ height: '60vh' }}
         sx={{
-          margin: "1em 0",
-          border: "1px solid #ced4da",
-          borderRadius: "4px",
-          padding: "1em",
+          margin: '1em 0',
+          border: '1px solid #ced4da',
+          borderRadius: '4px',
+          padding: '1em',
         }}
       >
         {/* notice id */}
@@ -144,16 +144,18 @@ function Preview() {
         {(values.form_link || values.form_submission_date) && (
           <p>
             All the eligible and interested candidates are required to fill the
-            form by{" "}
+            form by{' '}
+            <b>{dayjs(values?.form_submission_time).format('hh:mm A')}</b> on{' '}
             <b>
-              {dayjs(values?.form_submission_time).format("hh:mm A")}
-            </b>
-            {" "}on{" "}
-            <b>
-              {dayjs(values?.form_submission_date).format("DD MMMM YYYY (dddd)")}
+              {dayjs(values?.form_submission_date).format(
+                'DD MMMM YYYY (dddd)'
+              )}
             </b>
             .<br />
-            Apply link: <b><a href={values.form_link}>{values.form_link}</a></b>
+            Apply link:{' '}
+            <b>
+              <a href={values.form_link}>{values.form_link}</a>
+            </b>
           </p>
         )}
 
